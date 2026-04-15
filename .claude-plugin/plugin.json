@@ -1,0 +1,9 @@
+{
+  "name": "obsidian-skills",
+  "description": "Obsidian-focused skills for Claude Code. First skill loads Karpathy's LLM Wiki pattern when a session starts inside a vault.",
+  "version": "0.1.0",
+  "author": {
+    "name": "qhuang20"
+  },
+  "homepage": "https://github.com/qhuang20/obsidian-skills"
+}
