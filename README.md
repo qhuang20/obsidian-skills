@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.svg" alt="obsidian-skills" width="128" height="128">
+</p>
+
 # obsidian-skills
 
 A Claude Code plugin with Obsidian-focused skills.
