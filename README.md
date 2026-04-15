@@ -4,24 +4,56 @@
 
 # obsidian-skills
 
-A Claude Code plugin with Obsidian-focused skills.
+A [Claude Code](https://claude.com/claude-code) plugin that turns Claude into a better collaborator inside your Obsidian vault.
+
+## What it does
+
+Whenever you start Claude Code in a directory that is inside an Obsidian vault (any folder with a `.obsidian/` subdirectory, searched upward from your working directory), this plugin automatically loads a shared working style so Claude acts like a disciplined note-taking partner instead of a generic assistant. Outside a vault, it does nothing — your other projects are unaffected.
+
+No commands to remember, no configuration, no folder layout imposed on you.
 
 ## Skills
 
 ### `llm-wiki`
 
-Loads Andrej Karpathy's [LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) as a shared mental model whenever a Claude Code session starts inside an Obsidian vault (any directory with a `.obsidian/` subdirectory, searched upward from the session's project directory).
+Loads Andrej Karpathy's [LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) as a mental model for the session. The idea: instead of retrieving from raw documents every time you ask a question, Claude helps you build a **persistent, interlinked wiki** of markdown pages that compounds over time — summaries, entity pages, concept pages, an index, and a log of what's been added.
 
-The skill does not define subcommands or enforced layouts. It is a pure guide: when it is loaded, Claude treats the pattern — raw sources / wiki / schema, plus the `ingest` / `query` / `lint` operations — as the active collaboration mode, and co-evolves the specifics with you.
+Three lightweight operations anchor the workflow:
 
-## Install (local development)
+- **Ingest** — drop a source (article, paper, podcast notes) into your vault and ask Claude to process it. It reads the source, writes a summary, updates related pages, flags contradictions, and keeps cross-references consistent.
+- **Query** — ask questions against the accumulated wiki. Answers come with citations and can be filed back as new pages so your explorations compound.
+- **Lint** — periodically ask Claude to health-check the wiki: contradictions, orphan pages, stale claims, missing connections.
 
-```bash
-claude --plugin-dir ~/Developer/_my/obsidian-skills
+The skill is a pure guide — it does **not** define slash commands, enforce a directory layout, or write to your vault on its own. Claude co-evolves the specifics (page formats, folders, tooling) with you based on your domain.
+
+## Install
+
+Inside a running Claude Code session:
+
+```
+/plugin marketplace add qhuang20/obsidian-skills
+/plugin install obsidian-skills@obsidian-skills
 ```
 
-After making edits, run `/reload-plugins` inside Claude Code to pick up changes.
+That's it. Next time you start a session from inside any Obsidian vault, the `llm-wiki` working style loads automatically.
+
+To verify it's working, start Claude Code from a vault folder and ask: *"Did the obsidian-skills plugin inject any context at session start?"*
+
+## Uninstall
+
+```
+/plugin uninstall obsidian-skills@obsidian-skills
+```
+
+## Requirements
+
+- [Claude Code](https://claude.com/claude-code)
+- An Obsidian vault (or any folder with a `.obsidian/` subdirectory). Obsidian itself is optional — the plugin only looks for the marker directory.
 
 ## Roadmap
 
-More Obsidian-related skills will be added alongside `llm-wiki` (daily notes, link management, publishing, etc.).
+More Obsidian-related skills are planned (daily notes, link management, publishing workflows). Each will auto-activate in the same unobtrusive way: helpful in a vault, silent everywhere else.
+
+## License
+
+MIT
